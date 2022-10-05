@@ -16,7 +16,7 @@ The example startup Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and
 4. The Coherence CLI installed and in the PATH
 5. Clone of this repository using `git clone https://github.com/tmiddlet2666/coherence-playground.git`
       
-Open a terminal and change to the directory `monitoring/grafana`
+Open a terminal and change to the directory `monitoring`
 
 ## Setup
 
@@ -24,7 +24,7 @@ You will need to download the latest Grafana dashboards that are available in th
 
 ### Linux/ OSX
 
-1. Ensure you are in the `monitoring/grafana/grafana` directory 
+1. Ensure you are in the `monitoring/grafana` directory 
 2. Run the following to download the dashboards.
 
     ```bash
@@ -56,7 +56,7 @@ You will need to download the latest Grafana dashboards that are available in th
  
 1. Clone the Coherence Operator repository - https://github.com/oracle/coherence-operator.git
 
-1. Copy all the `*.json` files from `coherence-operator/dashboards/grafana` to the directory `monitoring/grafana/grafana/dashboards` directory.
+1. Copy all the `*.json` files from `coherence-operator/dashboards/grafana` to the directory `monitoring/grafana/dashboards` directory.
 
 ## Running the Example
      
@@ -100,7 +100,7 @@ You will need to download the latest Grafana dashboards that are available in th
       
 3. Startup Grafana and Prometheus
 
-    Ensure you are in the `monitoring/grafana` directory and run:
+    Ensure you are in the `monitoring` directory and run:
 
     ```bash
     $ docker-compose up -d  
@@ -120,6 +120,8 @@ You will need to download the latest Grafana dashboards that are available in th
 
    Open http://localhost:9090/targets and check that at least 3 of the targets are UP. 
 
+   It may take a minute for them to be discovered.
+
 5. Check Grafana
    
    Open the main Grafana dashboard at http://127.0.0.1:3000/d/coh-main/coherence-dashboard-main.
@@ -127,10 +129,22 @@ You will need to download the latest Grafana dashboards that are available in th
    The default username and password is: `admin`. You can change this or just press `Skip` on the first login.
 
    You should now see the main dashboard similar to the following:
-6. 
 
    ![Coherence Demo](assets/coherence-dashboard-main.png "Coherence Dashboard Main")
    
+6. Add some data using the console
+
+   ```bash
+   $ cohctl start console
+   ``` 
+   
+   At the `Map (?):` prompt type `cache test` and press return.
+
+   Next, type `bulkput 10000 100 0 1000` to add 10,000 objects of size 100, starting at 0 in batches of 1000.
+       
+7. Open the `Caches Summary Dashboard` by clicking on the `Available Dashboards` link on the top right.
+ 
+8. Scale your cluster to 6 nodes using `cohctl scale cluster -r 6` and observe the Grafana dashboards updating.
 
 ## Shutting everything down
 
