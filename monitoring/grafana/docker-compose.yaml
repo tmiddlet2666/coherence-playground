@@ -1,0 +1,27 @@
+version: "3.5"
+services:
+  prometheus:
+    image: prom/prometheus:v2.36.2
+    networks:
+      coherence:
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+    ports:
+      - 9090:9090
+
+  grafana:
+    networks:
+      coherence:
+    image: grafana/grafana:8.5.6
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/dashboards
+    ports:
+      - 3000:3000
+
+networks:
+  coherence:
