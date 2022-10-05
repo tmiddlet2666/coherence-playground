@@ -3,7 +3,7 @@
 ## What You Will Build
 
 This example shows how to set up Grafana and Prometheus to monitor a Coherence cluster 
-started with the Coherence CLI.
+started with the [Coherence CLI](https://github.com/oracle/coherence-cli).
 
 The example startup Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and then startup a cluster using 
 `cohctl` with Coherence metrics enabled.
@@ -13,7 +13,7 @@ The example startup Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and
 1. JDK 17+
 2. Docker and docker-compose
 3. Maven 3.8.x
-4. The Coherence CLI installed and in the PATH
+4. The Coherence CLI installed and on the PATH
 5. Clone of this repository using `git clone https://github.com/tmiddlet2666/coherence-playground.git`
       
 Open a terminal and change to the directory `monitoring`
@@ -21,6 +21,8 @@ Open a terminal and change to the directory `monitoring`
 ## Setup
 
 You will need to download the latest Grafana dashboards that are available in the Coherence Operator.
+
+> Note: This is only required the first time you run this example.
 
 ### Linux/ OSX
 
@@ -56,7 +58,7 @@ You will need to download the latest Grafana dashboards that are available in th
  
 1. Clone the Coherence Operator repository - https://github.com/oracle/coherence-operator.git
 
-1. Copy all the `*.json` files from `coherence-operator/dashboards/grafana` to the directory `monitoring/grafana/dashboards` directory.
+2. Copy all the `*.json` files from `coherence-operator/dashboards/grafana` to the directory `monitoring/grafana/dashboards` directory in your cloned `coherence-playground` directory.
 
 ## Running the Example
      
@@ -140,11 +142,15 @@ You will need to download the latest Grafana dashboards that are available in th
    
    At the `Map (?):` prompt type `cache test` and press return.
 
-   Next, type `bulkput 10000 100 0 1000` to add 10,000 objects of size 100, starting at 0 in batches of 1000.
+   Next, type the following to add 10,000 objects of size 100, starting at 0 in batches of 1000.
+
+   ```bash
+   bulkput 10000 100 0 1000 
+   ```
        
-7. Open the `Caches Summary Dashboard` by clicking on the `Available Dashboards` link on the top right.
+8. In Grafana, open the `Caches Summary Dashboard` by clicking on the `Available Dashboards` link on the top right.
  
-8. Scale your cluster to 6 nodes using `cohctl scale cluster -r 6` and observe the Grafana dashboards updating.
+9. Scale your cluster to 6 nodes using `cohctl scale cluster -r 6` and observe the Grafana dashboards updating.
 
 ## Shutting everything down
 
