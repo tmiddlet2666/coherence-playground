@@ -39,7 +39,7 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 ## Monitoring
 
-* [Monitoring Coherence with Grafana and Prometheus using Docker images](monitoring/grafana)
+* [Monitoring Coherence with Grafana and Prometheus using Docker images](monitoring)
  
 # In Progress Projects
 
