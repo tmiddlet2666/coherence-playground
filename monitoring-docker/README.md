@@ -32,7 +32,7 @@ The Docker images expose the following ports:
 You must have the following:
 * Docker Desktop for Mac or the equivalent Docker environment for your O/S
 * docker-compose - at least version 1.20+
-* Cloned this repository - https://github.com/tmiddlet2666/coherence-docker-metrics.git
+* Clone of this repository using git clone https://github.com/tmiddlet2666/coherence-playground.git
                                  
 ## Setup
 
