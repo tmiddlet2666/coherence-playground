@@ -102,14 +102,3 @@ The current hostname is docker0, IP of 172.17.0.1, which works for most environm
 ## Shutting everything Down
 
 1. Stop all Docker processes using `docker-compose down`
-
-## References
-
-See the following for more information:
-* [Coherence Community Edition on GitHub](https://github.com/oracle/coherence)
-* [Coherence Community Home Page](https://coherence.community/)
-* [Coherence documentation on Metrics](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.2206/manage/using-coherence-metrics.html)
-* [Coherence Operator on GitHub](https://github.com/oracle/coherence-operator)
-* [Coherence Operator Metrics Documentation](https://oracle.github.io/coherence-operator/docs/latest/#/docs/metrics/010_overview)
-* [Coherence Operator Grafana Dashboards in Detail](https://oracle.github.io/coherence-operator/docs/3.0.2/#/metrics/040_dashboards)
-* [Grafana](https://grafana.com/)
