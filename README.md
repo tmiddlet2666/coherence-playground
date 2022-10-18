@@ -40,7 +40,7 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 ## Monitoring Coherence with Grafana and Prometheus Docker Images
 
-* [Starting clusters with CLI](monitoring)
+* [Starting clusters using CLI](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
  
 # In Progress Projects

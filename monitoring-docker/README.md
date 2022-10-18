@@ -1,4 +1,4 @@
-# Coherence Docker Image with Metrics   
+# # Monitoring with Grafana and Prometheus using Docker - Starting Coherence using Docker Images
 
 ## What You Will Build
 

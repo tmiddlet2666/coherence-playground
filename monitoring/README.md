@@ -1,4 +1,4 @@
-# Monitoring Coherence with Grafana and Prometheus using Docker images
+# Monitoring with Grafana and Prometheus using Docker - Starting Coherence using CLI
 
 ## What You Will Build
 
