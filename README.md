@@ -21,7 +21,6 @@ Some examples require docker and docker-compose.
 >Important: If you find any problems with these projects or see something that needs to 
 > be changed or clarified, please [submit an issue](https://github.com/tmiddlet2666/coherence-playground/issues/new/choose).
 
-
 ## Useful Coherence Resources
 
 * [Coherence Community](https://coherence.community/)
@@ -39,12 +38,12 @@ Some examples require docker and docker-compose.
 
 As I add projects I will try and organise them in some useful way, but that's not a guarantee.
 
-## Monitoring
+## Monitoring Coherence with Grafana and Prometheus Docker Images
 
-* [Monitoring Coherence with Grafana and Prometheus using Docker images](monitoring)
+* [Starting clusters with CLI](monitoring)
+* [Starting cluster using Docker images](monitoring-docker)
  
 # In Progress Projects
-
 
 
 # Projects TODO
