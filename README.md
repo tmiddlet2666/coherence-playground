@@ -46,8 +46,8 @@ As I add projects I will try and organise them in some useful way, but that's no
 # In Progress Projects
 
 
-# Projects TODO
+# Projects TODO/ Ideas
 
-2. Setup GraphQL server using cohctl
+1. Setup GraphQL server using cohctl
 
 
