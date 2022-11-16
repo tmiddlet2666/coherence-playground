@@ -4,7 +4,7 @@
 
 This repository contains various Coherence related projects that I have found useful.
 
-> Note: These projects don't reflect the recommended 'Production' way of setting and running various Coherence
+> Note: These projects don't necessarily reflect the recommended 'Production' way of setting and running various Coherence
 bits and pieces, but are a good starting point for playing with and trying things out with Coherence. 
 > For the official way/ best practises of doing setting up Coherence, please refer to the [official Coherence commercial documentation](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.2206/).
 
@@ -45,11 +45,12 @@ As I add projects I will try and organise them in some useful way, but that's no
 * [Loading logs into Kibana Using Fluentd](logging)
  
 # In Progress Projects
-       
-
+ 
+* N/A      
 
 # Projects TODO/ Ideas
 
-1. Setup GraphQL server using cohctl
+* [Submit an idea](https://github.com/tmiddlet2666/coherence-playground/issues/new/choose)
+
 
 
