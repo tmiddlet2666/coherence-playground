@@ -6,6 +6,7 @@ This repository contains various Coherence related projects that I have found us
 
 > Note: These projects don't necessarily reflect the recommended 'Production' way of setting and running various Coherence
 bits and pieces, but are a good starting point for playing with and trying things out with Coherence. 
+> They are for educational purposes only.
 > For the official way/ best practises of doing setting up Coherence, please refer to the [official Coherence commercial documentation](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.2206/).
 
 ## Requirements
