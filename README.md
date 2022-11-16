@@ -39,10 +39,13 @@ Some examples require docker and docker-compose.
 
 As I add projects I will try and organise them in some useful way, but that's not a guarantee.
 
-## Monitoring Coherence with Grafana and Prometheus Docker Images
+## 1. Monitoring Coherence with Grafana and Prometheus Docker Images
 
 * [Starting clusters using CLI](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
+
+## 2. Capturing and searching Coherence logs in Kibana
+
 * [Loading logs into Kibana Using Fluentd](logging)
  
 # In Progress Projects
