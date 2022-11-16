@@ -6,7 +6,7 @@ This example shows how to set up Fluentd and Kibana to scrape logs from a Cohere
 started with the [Coherence CLI](https://github.com/oracle/coherence-cli).
 
 The example startup Kibana 7.13.1 and Elastic Search:7.13.1images using Docker and then startup a cluster using 
-`cohctl` with Coherence metrics enabled.
+`cohctl`.
 
 ## What You Need
 
@@ -18,9 +18,9 @@ The example startup Kibana 7.13.1 and Elastic Search:7.13.1images using Docker a
            
 > Note: Make sure java and mvn are in your PATH.
 
-Open a terminal and change to the directory `logging`
+Open a terminal and change to the directory `logging`.
 
-## BSetup fluentd image
+## Setup fluentd image
  
 ### Edit Fluentd config
 
@@ -83,23 +83,21 @@ docker build -t coherence/fluentd_logging:latest fluentd
    Starting cluster member storage-1...
    Starting cluster member storage-2...
    Cluster added and started
-   
-   $ cohctl set context my-cluster
    Current context is now my-cluster
    ```    
 
 2. Startup Grafana and Prometheus
 
-    Ensure you are in the `logging` directory, have Docker running and then issue the following:
+   Ensure you are in the `logging` directory, have Docker running and then issue the following:
 
-    ```bash
-    $ docker-compose up -d  
+   ```bash
+   $ docker-compose up -d  
    
-    [+] Running 4/4
-    Container logging-fluentd-1  Removed                                                                                                                                                       10.6s
-    Container logging-kibana-1   Removed                                                                                                                                                       10.6s
-    Container elasticsearch      Removed                                                                                                                                                        0.7s
-    Network logging_default      Removed
+   [+] Running 4/4
+   Network logging_default      Created                                                                                                                                                                        0.0s
+   Container elasticsearch      Started                                                                                                                                                                        0.6s
+   Container logging-fluentd-1  Started                                                                                                                                                                        1.5s
+   Container logging-kibana-1   Started  
    
    $ docker ps
    
@@ -113,7 +111,7 @@ docker build -t coherence/fluentd_logging:latest fluentd
    
     Open Kibana dashboard at http://127.0.0.1:5601/app/management/kibana/indexPatterns
          
-    Click on `Create Index Pattern`, and enter `c*` in the index pattern name, and you should see a pattern 
+    Click on `Create Index Pattern`, and enter `coherence-cluster*` in the index pattern name, and you should see a pattern 
     below called `coherence-cluster*`.  Click `Next Step` and choose `@timestamp` as your time field. 
     Click `Create Index Pattern`.
 

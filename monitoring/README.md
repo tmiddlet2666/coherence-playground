@@ -18,7 +18,7 @@ The example starts up Grafana 8.5.6 and Prometheus v2.36.2 images using Docker a
            
 > Note: Make sure java and mvn are in your PATH.
 
-Open a terminal and change to the directory `monitoring`
+Open a terminal and change to the directory `monitoring`.
 
 ## Setup
 
@@ -91,8 +91,6 @@ You will need to download the latest Grafana dashboards that are available in th
    Starting cluster member storage-1...
    Starting cluster member storage-2...
    Cluster added and started
-   
-   $ cohctl set context my-cluster
    Current context is now my-cluster
    ```    
    
