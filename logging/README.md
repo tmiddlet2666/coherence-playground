@@ -117,7 +117,9 @@ docker build -t coherence/fluentd_logging:latest fluentd
 
 4. View logs in Kibana.
 
-   Open Kibana at `http://127.0.0.1:5601/app/discover`.
+   Open Kibana at http://127.0.0.1:5601/app/discover` and search for data.
+
+   Refer to the following regarding searching for logs: https://www.elastic.co/guide/en/enterprise-search/current/logging-view-query-logs.html
 
 ## Shutting everything down
 
