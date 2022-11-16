@@ -5,7 +5,7 @@
 This example shows how to set up Grafana and Prometheus to monitor a Coherence cluster 
 started with the [Coherence CLI](https://github.com/oracle/coherence-cli).
 
-The example startup Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and then startup a cluster using 
+The example starts up Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and then startup a cluster using 
 `cohctl` with Coherence metrics enabled.
 
 ## What You Need
@@ -15,7 +15,9 @@ The example startup Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and
 3. Maven 3.8.x
 4. The Coherence CLI installed and on the PATH
 5. Clone of this repository using `git clone https://github.com/tmiddlet2666/coherence-playground.git`
-      
+           
+> Note: Make sure java and mvn are in your PATH.
+
 Open a terminal and change to the directory `monitoring`
 
 ## Setup
@@ -92,17 +94,13 @@ You will need to download the latest Grafana dashboards that are available in th
    
    $ cohctl set context my-cluster
    Current context is now my-cluster
-   ```   
+   ```    
+   
+   > Note: The `-t 9612` is used as the starting port for the metrics port and will be incremented for each server.
+ 
+2. Startup Grafana and Prometheus
 
-2. Set the current context to `my-cluster`
-
-   ```bash
-   $ cohctl set context my-cluster
-   Current context is now my-cluster
-      
-3. Startup Grafana and Prometheus
-
-    Ensure you are in the `monitoring` directory and run:
+    Ensure you are in the `monitoring` directory, have Docker running and then issue the following:
 
     ```bash
     $ docker-compose up -d  
@@ -118,13 +116,13 @@ You will need to download the latest Grafana dashboards that are available in th
    844114ca12a8   grafana/grafana:8.5.6     "/run.sh"                2 minutes ago   Up 22 seconds   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   grafana-grafana-
    ```
    
-4. Check the status of Prometheus targets
+3. Check the status of Prometheus targets
 
    Open http://localhost:9090/targets and check that at least 3 of the targets are UP. 
 
    It may take a minute for them to be discovered.
 
-5. Check Grafana
+4. Check Grafana
    
    Open the main Grafana dashboard at http://127.0.0.1:3000/d/coh-main/coherence-dashboard-main.
            
@@ -134,7 +132,7 @@ You will need to download the latest Grafana dashboards that are available in th
 
    ![Coherence Demo](assets/coherence-dashboard-main.png "Coherence Dashboard Main")
    
-6. Add some data using the console
+5. Add some data using the console
 
    ```bash
    $ cohctl start console
@@ -148,9 +146,9 @@ You will need to download the latest Grafana dashboards that are available in th
    bulkput 10000 100 0 1000 
    ```
        
-8. In Grafana, open the `Caches Summary Dashboard` by clicking on the `Available Dashboards` link on the top right.
+6. In Grafana, open the `Caches Summary Dashboard` by clicking on the `Available Dashboards` link on the top right.
  
-9. Scale your cluster to 6 nodes using `cohctl scale cluster -r 6` and observe the Grafana dashboards updating.
+7. Scale your cluster to 6 nodes using `cohctl scale cluster -r 6` and observe the Grafana dashboards updating.
 
 ## Shutting everything down
 

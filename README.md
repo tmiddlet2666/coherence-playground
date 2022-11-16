@@ -42,8 +42,10 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 * [Starting clusters using CLI](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
+* [Loading logs into Kibana Using Fluentd](logging)
  
 # In Progress Projects
+       
 
 
 # Projects TODO/ Ideas
