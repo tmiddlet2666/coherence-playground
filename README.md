@@ -43,6 +43,7 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 * [Starting clusters using CLI](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
+* [Monitoring Coherence under WebLogic Server](monitoring-weblogic)
 
 ## 2. Capturing and searching Coherence logs in Kibana
 

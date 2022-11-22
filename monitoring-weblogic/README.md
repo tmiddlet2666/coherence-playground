@@ -1,23 +1,15 @@
-# Monitoring with Grafana and Prometheus using Docker - Starting Coherence using Docker Images
+# Monitoring Coherence under WebLogic Server
 
 ## What You Will Build
 
-This document explains how to run the Coherence Docker image and view metrics via Grafana using `docker-compose`.
+This document explains how to monitor Coherence under WebLogic Server, using the demo application, and view metrics via Grafana using `docker-compose`.
 
-In this example we initially start-up 4 docker images:
-1. 2 x Coherence Community Edition (CE) version 22.09
+In this example we initially deploy the WebLogic Server examples and startup the following docker images
 1. Grafana - 8.5.6
 1. Prometheus - v2.36.2
 
 The Docker images expose the following ports:
 
-* Coherence 1
-  * 1408 - gRPC Proxy port
-  * 9612 - Coherence metrics endpoint to be scraped by Prometheus
-  * 20000 - Coherence*Extend port
-  * 30000 - Management over REST port
-* Coherence 2
-  * 9613 - Coherence metrics endpoint to be scraped by Prometheus
 * Grafana
   * 3000 - Grafana UI
 * Prometheus
@@ -33,9 +25,37 @@ You must have the following:
 * Docker Desktop for Mac or the equivalent Docker environment for your O/S
 * docker-compose - at least version 1.20+
 * Clone of this repository using git clone https://github.com/tmiddlet2666/coherence-playground.git
+* WebLogic Server 14.1.1.0 Downloaded
                                  
 ## Setup
 
+### Download and Install WebLogic Server
+
+Download WebLogic Server from https://www.oracle.com/in/middleware/technologies/fusionmiddleware-downloads.html and make sure
+you install with the examples.  You do not have to start the example domain at the end.
+
+### Install the Coherence Demo Domain
+
+1. After install, change to the directory `WLS_INSTALL/wlserver/server/bin`
+
+2. Run `. ./setWLSEnv.sh` for Linux/Mac or `setWLSEnv.cmd` for Windows
+
+3. Run the following command to install and startup the demo
+
+   ```bash    
+   cd $WLS_INSTALL/wlserver/samples/server/examples/src/examples/coherence/managed-coherence-servers/multi-server
+   
+   ant -Ddo.delete=y -Dsingle.server.password=welcome1 -Dsingle.server.host=127.0.0.1 -Dsingle.server.port=7001 -Dmulti.server.port=7003 deploy
+   ```                                                                                                                                         
+
+   Once this is completed, you will have a 6 node WebLogic Server cluster with 4 storage nodes and 2 client nodes
+   the Coherence examples installed.
+   
+   Default username/password is `weblogic/welcome1`
+
+5. Install the `coherence-metrics-resource.war` to the `ClientTier` and `StorageTier`.
+ 
+   Refer to the [Coherence Documentation for more information](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.2206/manage/using-coherence-metrics.html#GUID-76E06390-E71B-4AC2-B1BA-DFB11FD2BDCC).
 ### Download the Grafana Dashboards
 
 #### Linx/MacOS
@@ -102,3 +122,9 @@ The current hostname is docker0, IP of 172.17.0.1, which works for most environm
 ## Shutting everything Down
 
 1. Stop all Docker processes using `docker-compose down`
+ 
+2. Shutdown the WebLogic Instance
+         
+   ```bash
+   ant -Ddo.delete=y -Dsingle.server.password=welcome1 -Dsingle.server.host=127.0.0.1 -Dsingle.server.port=7001 -Dmulti.server.port=7003 shutdownMultiServer
+   ```   
