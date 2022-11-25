@@ -8,6 +8,8 @@ started with the [Coherence CLI](https://github.com/oracle/coherence-cli).
 The example starts up Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and then startup a cluster using 
 `cohctl` with Coherence metrics enabled.
 
+> *Note*: If you wish to monitor your own clusters. See the [Running the Example](#run) section. 
+
 ## What You Need
 
 1. JDK 17+
@@ -62,7 +64,9 @@ You will need to download the latest Grafana dashboards that are available in th
 
 2. Copy all the `*.json` files from `coherence-operator/dashboards/grafana` to the directory `monitoring/grafana/dashboards` directory in your cloned `coherence-playground` directory.
 
-## Running the Example
+## <a name="run"></a> Running the Example
+
+> Note: If you wish to monitor your own clusters, you can enable metrics on your cache servers starting on port 9612. See the [Coherence Metrics Documentation](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.2206/manage/using-coherence-metrics.html#GUID-6C949515-A9CB-419A-9855-FA63D672787A). 
      
 1. Create and start a Coherence Cluster with metrics enabled using the following:
 
