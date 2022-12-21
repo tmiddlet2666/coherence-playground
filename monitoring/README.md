@@ -5,7 +5,7 @@
 This example shows how to set up Grafana and Prometheus to monitor a Coherence cluster 
 started with the [Coherence CLI](https://github.com/oracle/coherence-cli).
 
-The example starts up Grafana 8.5.6 and Prometheus v2.36.2 images using Docker and then startup a cluster using 
+The example starts up Grafana 8.5.13 and Prometheus v2.36.2 images using Docker and then startup a cluster using 
 `cohctl` with Coherence metrics enabled.
 
 > *Note*: If you wish to monitor your own clusters. See the [Running the Example](#run) section. 
@@ -35,27 +35,6 @@ You will need to download the latest Grafana dashboards that are available in th
 
     ```bash
     $ ./download-dashboards.sh
-    
-    alerts-dashboard.json
-    coherence-dashboard-main.json
-    federation-details-dashboard.json
-    http-servers-summary-dashboard.json
-    member-details-dashboard.json
-    proxy-server-detail-dashboard.json
-    services-summary-dashboard.json
-    cache-details-dashboard.json
-    federation-summary-dashboard.json
-    kubernetes-summary-dashboard.json
-    members-summary-dashboard.json
-    proxy-servers-summary-dashboard.json
-    caches-summary-dashboard.json
-    elastic-data-summary-dashboard.json
-    grpc-summary-dashboard.json
-    machines-summary-dashboard.json
-    persistence-summary-dashboard.json
-    service-details-dashboard.json
-    coherence-executors-summary.json
-    coherence-executor-detail.json
     ```
 
 ### Windows
@@ -115,7 +94,7 @@ You will need to download the latest Grafana dashboards that are available in th
    
    CONTAINER ID   IMAGE                     COMMAND                  CREATED         STATUS          PORTS                                       NAMES
    4bc1250ec605   prom/prometheus:v2.36.2   "/bin/prometheus --c…"   2 minutes ago   Up 2 minutes    0.0.0.0:9090->9090/tcp, :::9090->9090/tcp   grafana-prometheus-1
-   844114ca12a8   grafana/grafana:8.5.6     "/run.sh"                2 minutes ago   Up 22 seconds   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   grafana-grafana-
+   844114ca12a8   grafana/grafana:8.5.13    "/run.sh"                2 minutes ago   Up 22 seconds   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   grafana-grafana-
    ```
    
 3. Check the status of Prometheus targets

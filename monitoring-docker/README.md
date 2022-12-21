@@ -6,7 +6,7 @@ This document explains how to run the Coherence Docker image and view metrics vi
 
 In this example we initially start-up 4 docker images:
 1. 2 x Coherence Community Edition (CE) version 22.09
-1. Grafana - 8.5.6
+1. Grafana - 8.5.13
 1. Prometheus - v2.36.2
 
 The Docker images expose the following ports:
@@ -66,7 +66,7 @@ Creating coherence-docker-metrics_coherence2_1 ... done
 
 $ docker ps
 CONTAINER ID   IMAGE                               COMMAND                  CREATED          STATUS                             PORTS                                                                                                                     NAMES
-dd27c452d0f6   grafana/grafana:8.5.6               "/run.sh"                13 seconds ago   Up 11 seconds                      0.0.0.0:3000->3000/tcp                                                                                                    coherence-docker-metrics_grafana_1
+dd27c452d0f6   grafana/grafana:8.5.13              "/run.sh"                13 seconds ago   Up 11 seconds                      0.0.0.0:3000->3000/tcp                                                                                                    coherence-docker-metrics_grafana_1
 cff1586818ba   ghcr.io/oracle/coherence-ce:22.09   "java -cp /coherence…"   13 seconds ago   Up 11 seconds (health: starting)   1408/tcp, 6676/tcp, 20000-20001/tcp, 30000/tcp, 0.0.0.0:9613->9612/tcp                                                    coherence-docker-metrics_coherence2_1
 fc9f62a6be4e   prom/prometheus:v2.36.2             "/bin/prometheus --c…"   13 seconds ago   Up 11 seconds                      0.0.0.0:9090->9090/tcp                                                                                                    coherence-docker-metrics_prometheus_1
 4e04f10ac3af   ghcr.io/oracle/coherence-ce:22.09   "java -cp /coherence…"   13 seconds ago   Up 11 seconds (health: starting)   0.0.0.0:1408->1408/tcp, 0.0.0.0:9612->9612/tcp, 6676/tcp, 0.0.0.0:20000->20000/tcp, 0.0.0.0:30000->30000/tcp, 20001/tcp   coherence-docker-metrics_coherence1_1

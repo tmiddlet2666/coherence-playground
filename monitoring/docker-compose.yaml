@@ -14,7 +14,7 @@ services:
   grafana:
     networks:
       coherence:
-    image: grafana/grafana:8.5.6
+    image: grafana/grafana:8.5.13
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
