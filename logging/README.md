@@ -56,7 +56,7 @@ docker build -t coherence/fluentd_logging:latest fluentd
 
 ## Running the Example
      
-1. Create and start a Coherence Cluster with metrics enabled using the following:
+1. Create and start a Coherence Cluster using the following:
 
    ```bash
    $ cohctl create cluster my-cluster
@@ -117,9 +117,19 @@ docker build -t coherence/fluentd_logging:latest fluentd
 
 4. View logs in Kibana.
 
-   Open Kibana at http://127.0.0.1:5601/app/discover` and search for data.
+   Open Kibana at http://127.0.0.1:5601/app/discover and search for data.
 
    Refer to the following regarding searching for logs: https://www.elastic.co/guide/en/enterprise-search/current/logging-view-query-logs.html
+
+5. Import dashboards
+
+   If you would like import the out-of-the-box dashboards from the Coherence Operator, please do the following:
+
+   1. Clone the Coherence Operator repository - https://github.com/oracle/coherence-operator.git
+   2. Access: http://127.0.0.1:5601/app/management/kibana/objects and click on `Import`
+   3. Select the file `kibana-dashboard-data.ndjson` from `coherence-operator/dashboards/kibana` directory and import
+   4. Access the dashboards via http://127.0.0.1:5601/app/dashboards
+
 
 ## Shutting everything down
 
