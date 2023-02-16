@@ -8,6 +8,8 @@ started with the [Coherence CLI](https://github.com/oracle/coherence-cli).
 The example startup Kibana 7.13.1 and Elastic Search:7.13.1images using Docker and then startup a cluster using 
 `cohctl`.
 
+Please refer to the *official* Coherence Operator docs on logging [here](https://oracle.github.io/coherence-operator/docs/latest/#/docs/logging/010_overview).
+
 ## What You Need
 
 1. JDK 17+
