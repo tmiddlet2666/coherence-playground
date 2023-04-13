@@ -43,11 +43,16 @@ As I add projects I will try and organise them in some useful way, but that's no
     
 * [Starting clusters using the CLI or your own cluster](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
+* [Start federated clusters using `cohctl`]()
 
 ## 2. Capturing and searching Coherence logs in Kibana
 
 * [Loading logs into Kibana Using Fluentd](logging)
- 
+                 
+## 3. Start Federated clusters using the CLI
+
+* [Start Active-Active Federated Coherence Clusters](federation)
+
 # In Progress Projects
  
 * N/A      
