@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains various Coherence related projects/demos related to managing and monitoring Coherence.
+This repository contains various Coherence related projects/demos mostly related to managing and monitoring Coherence.
 
 > Note: These projects don't necessarily reflect the recommended 'Production' way of setting and running various Coherence
 bits and pieces, but are a good starting point for playing with and trying things out with Coherence. 
@@ -33,6 +33,7 @@ Some examples require docker and docker-compose.
 * [Coherence CE on GitHub](https://github.com/oracle/coherence)
 * [Coherence CLI](https://github.com/oracle/coherence-cli)
 * [Coherence VisualVM Plugin](https://github.com/oracle/coherence-visualvm)
+* [Coherence Go Client](https://github.com/oracle/coherence-go-client)
 * [Coherence Demo](https://github.com/coherence-community/coherence-demo)
 
 ## Completed Projects
@@ -43,7 +44,7 @@ As I add projects I will try and organise them in some useful way, but that's no
     
 * [Starting clusters using the CLI or your own cluster](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
-* [Start federated clusters using `cohctl`]()
+* [Start federated clusters using `cohctl`](federation)
 
 ## 2. Capturing and searching Coherence logs in Kibana
 
