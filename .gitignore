@@ -2,3 +2,4 @@
 .class
 *.json
 .DS_Store
+.coh-*
