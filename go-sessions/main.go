@@ -5,9 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/gofiber/storage/coherence"
-	coh "github.com/oracle/coherence-go-client/coherence"
 	"log"
-	"os"
 	"strings"
 	"time"
 )
@@ -23,13 +21,13 @@ func main() {
 	}
 	defer storage.Close()
 
-	storage.Conn().AddSessionLifecycleListener(coh.NewSessionLifecycleListener().
-		OnAny(func(e coh.SessionLifecycleEvent) {
-			fmt.Printf("**EVENT=%s: source=%v\n", e.Type(), e.Source())
-			if e.Type() == coh.Disconnected {
-				os.Exit(1)
-			}
-		}))
+	//storage.Conn().AddSessionLifecycleListener(coh.NewSessionLifecycleListener().
+	//	OnAny(func(e coh.SessionLifecycleEvent) {
+	//		fmt.Printf("**EVENT=%s: source=%v\n", e.Type(), e.Source())
+	//		if e.Type() == coh.Disconnected {
+	//			os.Exit(1)
+	//		}
+	//	}))
 
 	// initialize the gofiber session store using the Coherence storage driver
 	store = session.New(session.Config{
