@@ -40,26 +40,26 @@ Some examples require docker and docker-compose.
 
 As I add projects I will try and organise them in some useful way, but that's not a guarantee.
 
-## 1. Monitoring Coherence with Grafana and Prometheus in Docker Images
+### 1. Monitoring Coherence with Grafana and Prometheus in Docker Images
     
 * [Starting clusters using the CLI or your own cluster](monitoring)
 * [Starting cluster using Docker images](monitoring-docker)
 * [Start federated clusters using `cohctl`](federation)
 
-## 2. Capturing and searching Coherence logs in Kibana
+### 2. Capturing and searching Coherence logs in Kibana
 
 * [Loading logs into Kibana Using Fluentd](logging)
                  
-## 3. Start Federated clusters using the CLI
+### 3. Start Federated clusters using the CLI
 
 * [Start Active-Active Federated Coherence Clusters](federation)
 
-# In Progress Projects
+## In Progress Projects
  
 * [Storing HTTP sessions in Coherence with Go](go-sessions)
 * [Examples using caching in Python](py-caching)
 
-# Projects TODO/ Ideas
+## Projects TODO/ Ideas
 
 * [Submit an idea](https://github.com/tmiddlet2666/coherence-playground/issues/new/choose)
 
