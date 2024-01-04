@@ -32,7 +32,7 @@ func main() {
 	// initialize the gofiber session store using the Coherence storage driver
 	store = session.New(session.Config{
 		Storage:    storage,
-		Expiration: time.Duration(60) * time.Second,
+		Expiration: time.Duration(120) * time.Second,
 	})
 
 	app := fiber.New()
