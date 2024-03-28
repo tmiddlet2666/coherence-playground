@@ -15,7 +15,7 @@ The example starts up Grafana 8.5.13 and Prometheus v2.36.2 images using Docker 
 1. JDK 17+
 2. Docker and docker-compose
 3. Maven 3.8.x
-4. The Coherence CLI installed and on the PATH
+4. The Coherence CLI installed and on the PATH - See [here](https://github.com/oracle/coherence-cli?tab=readme-ov-file#install-the-cli) for installation instructions
 5. Clone of this repository using `git clone https://github.com/tmiddlet2666/coherence-playground.git`
            
 > Note: Make sure java and mvn are in your PATH.
@@ -50,10 +50,10 @@ You will need to download the latest Grafana dashboards that are available in th
 1. Create and start a Coherence Cluster with metrics enabled using the following:
 
    ```bash
-   $ cohctl create cluster my-cluster -t 9612
+   $ cohctl create cluster my-cluster -t 9612 -v 24.03
 
    Cluster name:         my-cluster
-   Cluster version:      22.09
+   Cluster version:      24.03
    Cluster port:         7574
    Management port:      30000
    Replica count:        3
@@ -66,9 +66,9 @@ You will need to download the latest Grafana dashboards that are available in th
    Are you sure you want to create the cluster with the above details? (y/n) y
 
    Checking 3 Maven dependencies...
-    - com.oracle.coherence.ce:coherence:22.09
-    - com.oracle.coherence.ce:coherence-json:22.09
-    - org.jline:jline:3.20.0
+    - com.oracle.coherence.ce:coherence:24.03
+    - com.oracle.coherence.ce:coherence-json:24.03
+    - org.jline:jline:3.25.0
    Starting 3 cluster members for cluster my-cluster
    Starting cluster member storage-0...
    Starting cluster member storage-1...
