@@ -72,21 +72,15 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
 
 ## <a name="run"></a> Running the Example
 
-1. Create a profile called `federation` which points to the absolute path of your cache config and override:
-
-   E.g. if cloned dir is: /Users/timmiddleton/coherence-playground
+1. Create and start ClusterA using the following:
 
    ```bash
-   cohctl set profile federation -v "-Dcoherence.cacheconfig=/Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-cache-config.xml -Dcoherence.override=/Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-override.xml"
-   ```
-
-2. Create and start ClusterA using the following:
-
-   ```bash
-   $ cohctl create cluster ClusterA -C -v 14.1.1-2206-3 -P federation -H 30000 -p 7574 -M 2g -t 9612
+   $ cohctl create cluster ClusterA -C -v 14.1.1-2206-8 -H 30000 -p 7574 -M 2g -t 9612 \
+      --cache-config /Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-cache-config.xml \
+      --override-config /Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-override.xml
 
    Cluster name:         ClusterA
-   Cluster version:      14.1.1-2206-3
+   Cluster version:      14.1.1-2206-8
    Cluster port:         7574
    Management port:      30000
    Replica count:        3
@@ -94,14 +88,16 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
    Persistence mode:     on-demand
    Group ID:             com.oracle.coherence
    Additional artifacts: 
-   Startup Profile:      federation
-   Log destination root: 
+   Startup Profile:      
+   Log destination root:     
+   Cache Config:         /Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-cache-config.xml
+   Operational Override: /Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-override.xml
    Dependency tool:      mvn
    Are you sure you want to create the cluster with the above details? (y/n) y
 
    Checking 3 Maven dependencies...
-   - com.oracle.coherence:coherence:14.1.1-2206-3
-   - com.oracle.coherence:coherence-json:14.1.1-2206-3
+   - com.oracle.coherence:coherence:14.1.1-2206-8
+   - com.oracle.coherence:coherence-json:14.1.1-2206-8
    - org.jline:jline:3.20.0
    Starting 3 cluster members for cluster ClusterA
    Starting cluster member storage-0...
@@ -110,13 +106,16 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
    Current context is now ClusterA
    ```    
 
-3. Create and start ClusterB using the following:
+2. Create and start ClusterB using the following:
 
    ```bash
-   $ cohctl create cluster ClusterB -C -v 14.1.1-2206-3 -P federation -H 30001 -p 7575 -M 2g -t 9615
+   $ cohctl create cluster ClusterB -C -v 14.1.1-2206-8 -H 30001 -p 7575 -M 2g -t 9615 \
+      --cache-config /Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-cache-config.xml \
+      --override-config /Users/timmiddleton/coherence-playground/federation/config-2-servers/federated-override.xml
+
 
    Cluster name:         ClusterB
-   Cluster version:      14.1.1-2206-3
+   Cluster version:      14.1.1-2206-8
    Cluster port:         7575
    Management port:      30001
    Replica count:        3
@@ -130,8 +129,8 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
    Are you sure you want to create the cluster with the above details? (y/n) y
 
    Checking 3 Maven dependencies...
-   - com.oracle.coherence:coherence:14.1.1-2206-3
-   - com.oracle.coherence:coherence-json:14.1.1-2206-3
+   - com.oracle.coherence:coherence:14.1.1-2206-8
+   - com.oracle.coherence:coherence-json:14.1.1-2206-8
    - org.jline:jline:3.20.0
    Starting 3 cluster members for cluster ClusterB
    Starting cluster member storage-0...
@@ -140,12 +139,10 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
    Current context is now ClusterB
    ```    
 
-4. Add data to ClusterA
+3. Add data to ClusterA
 
     ```bash
-    cohctl set context ClusterA
-   
-    cohctl start console -P federation   
+    cohctl start console -c ClusterA 
    
     Map (?): cache test
            
@@ -153,14 +150,12 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
 
     ```
 
-5. Query data in ClusterB
+4. Query data in ClusterB
    
     Open a new terminal and connect to ClusterB. (Make sure you have JDK17 and CLI in the PATH)
 
     ```bash
-    cohctl set context ClusterB
-   
-    cohctl start console -P federation   
+    cohctl start console -c ClusterB  
    
     Map (?): cache test
            
@@ -173,13 +168,22 @@ mvn install:install-file -Dfile=%COHERENCE_HOME%\lib\coherence-json.jar -DpomFil
 ## Restarting the clusters
        
 ```bash
-cohctl start cluster ClusterA -P federation -t 9612 -M 2g
+cohctl start cluster ClusterA -t 9612 -M 2g
 
-cohctl start cluster ClusterB -P federation -t 9615 -M 2g 
+cohctl start cluster ClusterB -t 9615 -M 2g 
 ```
 
 
 ## Shutting everything down
 
-1. Stop ClusterA using `cohctl stop cluster ClusterA -y`
-1. Stop ClusterB using `cohctl stop cluster ClusterB -y`
+1. Stop ClusterA:
+  
+   ```bash
+   cohctl stop cluster ClusterA -y
+   ``` 
+   
+2. Stop ClusterB
+  
+   ```bash
+   cohctl stop cluster ClusterB -y
+   ```
