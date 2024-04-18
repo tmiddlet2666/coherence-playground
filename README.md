@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains various Coherence related projects/demos mostly related to managing and monitoring Coherence.
+This repository contains my own personal Coherence related projects/demos mostly related to managing and monitoring Coherence.
 
 > Note: These projects don't necessarily reflect the recommended 'Production' way of setting and running various Coherence
 bits and pieces, but are a good starting point for playing with and trying things out with Coherence. 
