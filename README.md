@@ -56,8 +56,8 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 ## In Progress Projects
  
-* [Storing HTTP sessions in Coherence with Go](go-sessions)
-* [Examples using caching in Python](py-caching)
+* [Storing HTTP sessions in Coherence with Go](go/go-sessions)
+* [Setting up Coherence on a Raspberry Pi-4B](pi)
 
 ## Projects TODO/ Ideas
 
