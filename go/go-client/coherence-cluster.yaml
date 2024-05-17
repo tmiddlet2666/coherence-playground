@@ -1,0 +1,20 @@
+apiVersion: coherence.oracle.com/v1
+kind: Coherence
+metadata:
+  name: storage
+  namespace: coherence
+spec:
+  image: ghcr.io/oracle/coherence-ce:22.06.4
+  coherence:
+    metrics:
+      enabled: false
+    management:
+      enabled: true
+  ports:
+    - name: metrics
+      serviceMonitor:
+        enabled: true
+    - name: management
+    - name: grpc
+      port: 1408
+  replicas: 3

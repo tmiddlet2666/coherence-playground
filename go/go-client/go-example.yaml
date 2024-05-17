@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-example
+  namespace: coherence
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-example
+  template:
+    metadata:
+      labels:
+        app: go-example
+    spec:
+      containers:
+      - name: go-example
+        image: go-example:1.0.0
+        env:
+        - name: "COHERENCE_SERVER_ADDRESS"
+          value: "storage-grpc:1408"
+        - name: "COHERENCE_SESSION_DEBUG"
+          value: "true"
