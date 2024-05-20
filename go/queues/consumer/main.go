@@ -49,6 +49,6 @@ func main() {
 		received++
 
 		fmt.Printf("Order=%d (%s) created on %v, processing time=%v orders received=%d\n",
-			order.OrderNumber, order.Customer, order.CreateTime, processingTime, received)
+			order.OrderNumber, order.Customer, time.UnixMilli(order.CreateTime), processingTime, received)
 	}
 }
