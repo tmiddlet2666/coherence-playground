@@ -53,7 +53,7 @@ func main() {
 	for i := 0; i < numOrders; i++ {
 		newOrder := common.Order{
 			OrderNumber: startOrderNumber + i,
-			Customer:    fmt.Sprintf("Customer %d", i),
+			Customer:    fmt.Sprintf("Customer %d", i+1),
 			OrderStatus: "NEW",
 			OrderTotal:  rand.Float32() * 1000, //nolint
 			CreateTime:  time.Now().UnixMilli(),
