@@ -30,11 +30,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>com.oracle.coherence.spring</groupId>
       <artifactId>coherence-spring-boot-starter</artifactId>
       <version>${coherence-spring.version}</version>
