@@ -43,18 +43,6 @@
     <exec.mainClass>com.oracle.coherence.demo.frameworks.micronaut.Application</exec.mainClass>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.junit</groupId>
-        <artifactId>junit-bom</artifactId>
-        <version>${junit.version}</version>
-        <type>bom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <!-- Coherence+Micronaut integration dependencies -->
     <!-- These are overridden dependencies from the Micronaut BOM;
