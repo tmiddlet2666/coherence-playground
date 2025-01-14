@@ -9,7 +9,7 @@ This has three started projects for using Coherence with Helidon, Spring Boot an
 
 ## Building each of the projects.
               
-Run the following in each of the sub-directories:
+Run the following in each of the subdirectories:
 
 ```bash
 mvn clean install
