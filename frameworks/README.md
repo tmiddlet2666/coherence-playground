@@ -17,7 +17,7 @@ mvn clean install
 
 ## Starting the application
 
-### Run Helidon
+### Run Helidon (Jakarta)
 
 ```bash
 cd helidon
@@ -27,7 +27,20 @@ java -jar target/helidon.jar
 Run additional cache server:
 
 ```bash
-java -Dmain.class=com.tangosol.net.Coherence -Dserver.port=-1 -jar target/helidon.jar  
+java -Dmain.class=com.tangosol.net.Coherence -Dserver.port=-1 -Dcoherence.management.http=none -jar target/helidon.jar  
+```
+
+### Run Helidon (javax)
+
+```bash
+cd helidon-javax
+java -jar target/helidon-javax.jar
+```
+
+Run additional cache server:
+
+```bash
+java -Dmain.class=com.tangosol.net.Coherence -Dserver.port=-1 -Dcoherence.management.http=none -jar target/helidon-javax.jar  
 ```
 
 ### Run Spring Boot
@@ -40,7 +53,7 @@ java -jar target/springboot-1.0-SNAPSHOT.jar
 Run additional cache server:
 
 ```bash
-java -Dserver.port=-1 -Dloader.main=com.tangosol.net.Coherence -jar target/springboot-1.0-SNAPSHOT.jar
+java -Dserver.port=-1 -Dloader.main=com.tangosol.net.Coherence -Dcoherence.management.http=none -jar target/springboot-1.0-SNAPSHOT.jar
 ```
 
 ### Run Micronaut

@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   prometheus:
     image: prom/prometheus:v2.37.9
@@ -15,6 +14,7 @@ services:
     networks:
       coherence:
     image: grafana/grafana:10.0.13
+#    image: grafana/grafana:11.3.0
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
