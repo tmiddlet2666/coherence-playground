@@ -35,7 +35,7 @@ public class DemoController {
     @PostMapping
     public ResponseEntity<Void> createCustomer(@RequestBody Customer customer) {
         customers.put(customer.getId(), customer);
-        return ResponseEntity.accepted(customer).build();
+        return ResponseEntity.accepted().build();
     }
 
     @GetMapping("/{id}")
