@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.1</version>
+    <version>3.4.2</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
@@ -18,7 +18,7 @@
 
   <properties>
     <java.version>21</java.version>
-    <coherence.version>24.09</coherence.version>
+    <coherence.version>24.09.3</coherence.version>
     <coherence.group.id>com.oracle.coherence.ce</coherence.group.id>
     <coherence-spring.version>4.3.0</coherence-spring.version>
   </properties>
