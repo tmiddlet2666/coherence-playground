@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<coherence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
+   xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd">
+
+  <!--
+  Define a federation configuration for ClusterA and ClusterB
+  where the default topology is Active-Active.
+  -->
+  <federation-config>
+    <participants>
+      <participant>
+        <name>primary-cluster</name>
+        <initial-action>start</initial-action>
+        <connect-timeout>1m</connect-timeout>
+        <send-timeout>1m</send-timeout>
+        <remote-addresses>
+          <socket-address>
+            <address>primary-cluster-wka</address>
+            <port>40000</port>
+          </socket-address>
+        </remote-addresses>
+      </participant>
+      <participant>
+        <name>secondary-cluster</name>
+        <initial-action>start</initial-action>
+        <connect-timeout>1m</connect-timeout>
+        <send-timeout>1m</send-timeout>
+        <remote-addresses>
+          <socket-address>
+            <address>secondary-cluster-wka</address>
+            <port>40000</port>
+          </socket-address>
+        </remote-addresses>
+      </participant>
+    </participants>
+    <topology-definitions>
+      <active-active>
+         <name>ActiveActive</name>
+         <active>primary-cluster</active>
+         <active>secondary-cluster</active>
+      </active-active>
+   </topology-definitions>
+  </federation-config>
+</coherence>
+

@@ -1,0 +1,27 @@
+apiVersion: coherence.oracle.com/v1
+kind: Coherence
+metadata:
+  name: primary-cluster
+spec:
+  env:
+    - name: "JDK_JAVA_OPTIONS"
+      value:  "-XX:UseSVE=0"
+  jvm:
+    classpath:
+      - /config
+      - /u01/oracle/oracle_home/coherence/lib/coherence.jar
+  secretVolumes:
+    - mountPath: /config
+      name: storage-config
+  ports:
+    - name: "federation"
+      port: 40000
+    - name: management
+  coherence:
+    cacheConfig: /config/federated-cache-config.xml
+    overrideConfig: /config/federated-override.xml
+    logLevel: 9
+  image: container-registry.oracle.com/middleware/coherence:14.1.2.0.0
+  imagePullSecrets:
+    - name: ocr-pull-secret
+  replicas: 3
