@@ -170,3 +170,7 @@ kubectl delete -n federation-demo -f yaml/secondary-cluster.yaml
 ```bash
 kubectl delete -f https://github.com/oracle/coherence-operator/releases/download/v3.4.3/coherence-operator.yaml
 ```
+
+```bash
+kubectl delete namespace federation-demo
+```

@@ -17,7 +17,7 @@
         <send-timeout>1m</send-timeout>
         <remote-addresses>
           <socket-address>
-            <address>primary-cluster-wka</address>
+            <address>primary-cluster-federation</address>
             <port>40000</port>
           </socket-address>
         </remote-addresses>
@@ -29,7 +29,7 @@
         <send-timeout>1m</send-timeout>
         <remote-addresses>
           <socket-address>
-            <address>secondary-cluster-wka</address>
+            <address>secondary-cluster-federation</address>
             <port>40000</port>
           </socket-address>
         </remote-addresses>
