@@ -2,8 +2,7 @@
 
 This example shows running Coherence Federation between two clusters in the same Kubernetes clusters.
 
-> Note: This is an example only and normally Federation is used to federate between separate gragraphical locations.
-
+> Note: This is an example only and normally Federation is used to federate between separate geographic locations.
 
 ## Pre-Requisites 
 

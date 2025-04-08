@@ -2,16 +2,11 @@
 
 ## What You Will Build
 
-This example shows how to set up Coherence CE 22.06.8 on a Raspberry Pi-4B using the Coherence CLI and 
+This example shows how to set up Coherence CE 25.03 on a Raspberry Pi-4B using the Coherence CLI and 
 setting it to auto-start on boot.
 
 I was helping a colleague of mine setup Coherence on a Pi for storing state for Python programs 
 and thought this may be a good alternative from a docker image.
-
-> Note 1. The Python client requires Coherence gRPC proxy dependencies to be able to start gGRPC proxy for the client to connect. 
-         
-> Note 2. This example just starts a single Coherence cache server to 
-> minimize memory overhead, but you could start multiple to allow for cluster HA. See the end of the readme for more details.
 
 ## What You Need
 
@@ -22,7 +17,7 @@ and thought this may be a good alternative from a docker image.
 1. Login as `pi` and run the following to install Java 17 and Maven.
 
    ```bash
-   sudo apt install openjdk-17-jdk maven
+   sudo apt install default-jre-headless openjdk-17-jdk maven
    ```
    
    ```bash
@@ -33,7 +28,7 @@ and thought this may be a good alternative from a docker image.
    ```bash
    Apache Maven 3.8.7
    Maven home: /usr/share/maven
-   Java version: 17.0.10, vendor: Debian, runtime: /usr/lib/jvm/java-17-openjdk-arm64
+   Java version: 17.0.14, vendor: Debian, runtime: /usr/lib/jvm/java-17-openjdk-arm64
    Default locale: en_GB, platform encoding: UTF-8
    OS name: "linux", version: "6.6.20+rpt-rpi-v8", arch: "aarch64", family: "unix"
    ```
@@ -46,7 +41,7 @@ and thought this may be a good alternative from a docker image.
       
    Output:
    ```bash
-   Installing Coherence CLI 1.6.1 for Linux/aarch64 into /usr/local/bin ...
+   Installing Coherence CLI 1.8.0 for Linux/aarch64 into /usr/local/bin ...
    Using 'sudo' to mv cohctl binary to /usr/local/bin
 
    To uninstall the Coherence CLI execute the following:
@@ -54,31 +49,31 @@ and thought this may be a good alternative from a docker image.
    ```
   
    ```bash
-   cohctl version | bash
+   cohctl version
    ``` 
    
    ```bash
    pi@pi-4b:~ $ cohctl version
    Coherence Command Line Interface
-   CLI Version:  1.6.1
-   Date:         2024-04-17T03:46:43Z
-   Commit:       7e869a55e06476de92940b0f8b2887100d7921b0
+   CLI Version:  1.8.0
+   Date:         2024-12-20T04:42:40Z
+   Commit:       78c04e4216bba2903d2d314b3af583b363fe23dc
    OS:           linux
    Architecture: arm64
-   Go Version:   go1.20.14
+   Go Version:   go1.22.10
    ```
     
-3. Create a Profile to set the gRPC port
+3. Create a Profile to limit the startup services
 
    ```bash
-   cohctl set profile grpc -v "-Dcoherence.grpc.server.port=1408" -y
+   cohctl set profile thin -y -v "-Dcoherence.system.proxy.enabled=false -Dcoherence.metrics.http.enabled=false"
    cohctl get profiles
    ``` 
    
    Output:
    ```bash
-   PROFILE  VALUE                            
-   grpc     -Dcoherence.grpc.server.port=1408
+   PROFILE  VALUE
+   thin     -Dcoherence.system.proxy.enabled=false -Dcoherence.metrics.http.enabled=false
    ```   
    
 4. Create a minimal cache config to reduce what is started
@@ -121,7 +116,7 @@ and thought this may be a good alternative from a docker image.
    For this simple cluster we are creating and starting only 1 member. You can adjust the memory if you require more.
 
    ```bash
-   cohctl create cluster local -v 22.06.8 -P grpc -r 1 -M 256m -a coherence-grpc-proxy --cache-config /home/pi/pi-cache-config.xml
+   cohctl create cluster local -v 25.03 -r 2 -M 256m -a coherence-grpc-proxy,coherence-java-client -s active -T 17 -P thin --cache-config /home/pi/pi-cache-config.xml
    ```      
    
    > Note: The required Maven dependencies will be downloaded and the cluster started. This may take a short while.
@@ -129,11 +124,12 @@ and thought this may be a good alternative from a docker image.
    Output:
    ```bash
    Checking 4 Maven dependencies...
-   - com.oracle.coherence.ce:coherence:22.06.8
-   - com.oracle.coherence.ce:coherence-grpc-proxy:22.06.8
-   - com.oracle.coherence.ce:coherence-json:22.06.8
+   - com.oracle.coherence.ce:coherence:25.03
+   - com.oracle.coherence.ce:coherence-grpc-proxy:25.03
+   - com.oracle.coherence.ce:coherence-java-client:25.03
+   - com.oracle.coherence.ce:coherence-json:25.03
    - org.jline:jline:3.25.0
-   Starting 1 cluster members for cluster local
+   Starting 2 cluster members for cluster local
    Starting cluster member storage-0...
    Current context is now local
    Cluster added and started
@@ -148,16 +144,17 @@ and thought this may be a good alternative from a docker image.
    Output: 
    ```bash
    Using cluster connection 'local' from current context.
-   
-   Total cluster members: 1
-   Storage enabled count: 1
+
+   Total cluster members: 2
+   Storage enabled count: 2
    Departure count:       0
-   
-   Cluster Heap - Total: 256 MB Used: 29 MB Available: 227 MB (88.7%)
-   Storage Heap - Total: 256 MB Used: 29 MB Available: 227 MB (88.7%)
-   
+
+   Cluster Heap - Total: 512 MB Used: 160 MB Available: 352 MB (68.8%)
+   Storage Heap - Total: 512 MB Used: 160 MB Available: 352 MB (68.8%)
+
    NODE ID  ADDRESS     PORT   PROCESS  MEMBER     ROLE             STORAGE  MAX HEAP  USED HEAP  AVAIL HEAP
-         1  /127.0.0.1  38975     2377  storage-0  CoherenceServer  true       256 MB      29 MB      227 MB
+   1  /127.0.0.1  43453      756  storage-0  CoherenceServer  true       256 MB      94 MB      162 MB
+   2  /127.0.0.1  36975      757  storage-1  CoherenceServer  true       256 MB      66 MB      190 MB
    ```
    
 6. Setting the cluster to start on boot
@@ -171,7 +168,7 @@ and thought this may be a good alternative from a docker image.
    Add the following to the end of file and save:
                                                  
    ```bash
-   @reboot /usr/local/bin/cohctl start cluster local -r 1 -M 256m -P grpc
+   @reboot /usr/local/bin/cohctl start cluster local -r 2 -M 256m -P thin
    ```    
    
    Restart you Pi by using the following:
@@ -233,7 +230,7 @@ and thought this may be a good alternative from a docker image.
    cohctl scale cluster local -r 2 -M 256m
    ```
 
-   After a shot time you can issue the following command to view the members:
+   After a short time you can issue the following command to view the members:
 
    ```bash
    cohctl get members
