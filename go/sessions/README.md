@@ -6,7 +6,7 @@ integration with the very popular "Express inspired web framework" [Fiber](https
 ## Prerequisites 
 
 1. Docker setup using either Docker or Rancher Desktop
-2. Go 1.19 or above
+2. Go 1.23 or above
 3. Your favourite IDE
 
 See the article [Using Coherence to manage HTTP sessions in Go](https://medium.com/oracle-coherence/using-coherence-to-manage-http-sessions-in-go-6aa0c71201ff) for full details.

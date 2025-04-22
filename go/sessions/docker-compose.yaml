@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   grpc-proxy:
     depends_on:
@@ -22,7 +21,7 @@ services:
       coherence:
         aliases:
           - machine1
-    image: ghcr.io/oracle/coherence-ce:24.03
+    image: ghcr.io/oracle/coherence-ce:14.1.2-0-1-java17
     environment:
       - coherence.cluster=cluster1
       - coherence.member=member1
@@ -45,7 +44,7 @@ services:
       coherence:
         aliases:
           - machine2
-    image: ghcr.io/oracle/coherence-ce:24.03
+    image: ghcr.io/oracle/coherence-ce:14.1.2-0-1-java17
     environment:
       - coherence.cluster=cluster1
       - coherence.member=member2
