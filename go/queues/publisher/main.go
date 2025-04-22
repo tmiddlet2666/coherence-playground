@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/oracle/coherence-go-client/coherence"
+	"github.com/oracle/coherence-go-client/v2/coherence"
 	"log"
 	"math/rand"
 	"os"
@@ -43,12 +43,10 @@ func main() {
 	}
 	defer session.Close()
 
-	orderQueue, err := coherence.GetNamedQueue[common.Order](ctx, session, common.QueueName)
+	orderQueue, err := coherence.GetNamedQueue[common.Order](ctx, session, common.QueueName, coherence.PagedQueue)
 	if err != nil {
 		panic(err)
 	}
-
-	defer orderQueue.Close()
 
 	for i := 0; i < numOrders; i++ {
 		newOrder := common.Order{
@@ -58,7 +56,7 @@ func main() {
 			OrderTotal:  rand.Float32() * 1000, //nolint
 			CreateTime:  time.Now().UnixMilli(),
 		}
-		err = orderQueue.Offer(newOrder)
+		err = orderQueue.OfferTail(ctx, newOrder)
 
 		if i%25 == 0 && i != 0 {
 			log.Printf("submitted %d orders so far", i)
