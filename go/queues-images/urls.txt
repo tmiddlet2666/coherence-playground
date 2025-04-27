@@ -1,0 +1,1 @@
+https://github.com/oracle/coherence-cli/blob/main/docs/images/logo-with-name.png
