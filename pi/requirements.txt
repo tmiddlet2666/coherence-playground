@@ -1,0 +1,4 @@
+coherence-client==2.0.2
+Quart==0.20.0
+quart-cors==0.6.0
+requests
