@@ -2,7 +2,7 @@
 
 ## What You Will Build
 
-This example shows how to set up Coherence CE 25.03 on a Raspberry Pi-4B using the Coherence CLI and 
+This example shows how to set up Coherence CE 25.03.1 on a Raspberry Pi-4B using the Coherence CLI and 
 setting it to auto-start on boot.
 
 I was helping a colleague of mine setup Coherence on a Pi for storing state for Python programs 
@@ -41,7 +41,7 @@ and thought this may be a good alternative from a docker image.
       
    Output:
    ```bash
-   Installing Coherence CLI 1.8.0 for Linux/aarch64 into /usr/local/bin ...
+   Installing Coherence CLI 1.9.1 for Linux/aarch64 into /usr/local/bin ...
    Using 'sudo' to mv cohctl binary to /usr/local/bin
 
    To uninstall the Coherence CLI execute the following:
@@ -55,7 +55,7 @@ and thought this may be a good alternative from a docker image.
    ```bash
    pi@pi-4b:~ $ cohctl version
    Coherence Command Line Interface
-   CLI Version:  1.8.0
+   CLI Version:  1.9.1
    Date:         2024-12-20T04:42:40Z
    Commit:       78c04e4216bba2903d2d314b3af583b363fe23dc
    OS:           linux
@@ -116,7 +116,7 @@ and thought this may be a good alternative from a docker image.
    For this simple cluster we are creating and starting only 1 member. You can adjust the memory if you require more.
 
    ```bash
-   cohctl create cluster local -v 25.03 -r 2 -M 256m -a coherence-grpc-proxy,coherence-java-client -s active -T 17 -P thin --cache-config /home/pi/pi-cache-config.xml
+   cohctl create cluster local -v 25.03.1 -r 2 -M 256m -a coherence-grpc-proxy,coherence-java-client -s active -T 17 -P thin --cache-config /home/pi/pi-cache-config.xml
    ```      
    
    > Note: The required Maven dependencies will be downloaded and the cluster started. This may take a short while.
@@ -124,10 +124,10 @@ and thought this may be a good alternative from a docker image.
    Output:
    ```bash
    Checking 4 Maven dependencies...
-   - com.oracle.coherence.ce:coherence:25.03
-   - com.oracle.coherence.ce:coherence-grpc-proxy:25.03
-   - com.oracle.coherence.ce:coherence-java-client:25.03
-   - com.oracle.coherence.ce:coherence-json:25.03
+   - com.oracle.coherence.ce:coherence:25.03.1
+   - com.oracle.coherence.ce:coherence-grpc-proxy:25.03.1
+   - com.oracle.coherence.ce:coherence-java-client:25.03.1
+   - com.oracle.coherence.ce:coherence-json:25.03.1
    - org.jline:jline:3.25.0
    Starting 2 cluster members for cluster local
    Starting cluster member storage-0...

@@ -14,7 +14,9 @@ var store *session.Store
 
 func main() {
 	// create new coherence session store using defaults of localhost:1408
-	storage, err := coherence.New()
+	storage, err := coherence.New(coherence.Config{
+		Address: "coherence:///localhost:7574",
+	})
 
 	if err != nil {
 		log.Fatal("unable to connect to Coherence ", err)
