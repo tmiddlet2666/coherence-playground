@@ -34,7 +34,7 @@ You will need to download the latest Grafana dashboards that are available in th
 2. Run the following to download the dashboards.
 
     ```bash
-    $ ./download-dashboards.sh
+    ./download-dashboards.sh
     ```
 
 ### Windows
@@ -50,10 +50,10 @@ You will need to download the latest Grafana dashboards that are available in th
 1. Create and start a Coherence Cluster with metrics enabled using the following:
 
    ```bash
-   $ cohctl create cluster my-cluster -t 9612 -v 24.03
+   $ cohctl create cluster my-cluster -t 9612 -v 25.03.1
 
    Cluster name:         my-cluster
-   Cluster version:      24.03
+   Cluster version:      25.03.1
    Cluster port:         7574
    Management port:      30000
    Replica count:        3
@@ -66,8 +66,8 @@ You will need to download the latest Grafana dashboards that are available in th
    Are you sure you want to create the cluster with the above details? (y/n) y
 
    Checking 3 Maven dependencies...
-    - com.oracle.coherence.ce:coherence:24.03
-    - com.oracle.coherence.ce:coherence-json:24.03
+    - com.oracle.coherence.ce:coherence:25.03.1
+    - com.oracle.coherence.ce:coherence-json:25.03.1
     - org.jline:jline:3.25.0
    Starting 3 cluster members for cluster my-cluster
    Starting cluster member storage-0...
