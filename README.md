@@ -43,7 +43,6 @@ As I add projects I will try and organise them in some useful way, but that's no
 ### 1. Monitoring Coherence with Grafana and Prometheus in Docker Images
     
 * [Starting clusters using the CLI or your own cluster](monitoring)
-* [Starting cluster using Docker images](monitoring-docker)
 * [Start federated clusters using `cohctl`](federation)
 
 ### 2. Capturing and searching Coherence logs in Kibana

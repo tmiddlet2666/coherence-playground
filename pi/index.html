@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-auto d-flex align-items-center">
             <label for="ttlInput" class="me-2 mb-0">TTL (s):</label>
-            <input id="ttlInput" class="form-control" type="number" min="1" value="60" style="width: 80px;">
+            <input id="ttlInput" class="form-control" type="number" min="1" value="30" style="width: 80px;">
         </div>
         <div class="col-md">
             <button id="getWeatherBtn" class="btn btn-primary w-100">Get Weather</button>
@@ -48,7 +48,12 @@
         <div class="mb-2"><strong>Source:</strong> <span id="source"></span></div>
 
         <h4 class="mt-3 mb-1">Current Conditions</h4>
-        <h6 class="text-muted mb-3" id="locationMeta"></h6>
+        <h6 class="text-muted mb-3">
+            📍 Location details:
+            <a id="locationLink" href="#" target="_blank" rel="noopener noreferrer">
+                <span id="locationName"></span>
+            </a>
+        </h6>
 
         <ul class="list-group">
             <li class="list-group-item">
@@ -96,6 +101,7 @@
     const feelsLikeIcon = document.getElementById('feelsLikeIcon');
     const cloudIcon = document.getElementById('cloudIcon');
     const humidityIcon = document.getElementById('humidityIcon');
+    const locationLink = document.getElementById('locationLink');
 
     const setCloudIcon = (cloudcover) => {
         const val = parseInt(cloudcover);
@@ -131,13 +137,13 @@
         const val = parseInt(humidity);
         let imgSrc = "";
         if (val <= 30) {
-            imgSrc = "https://img.icons8.com/emoji/48/cactus.png"; // dry
+            imgSrc = "https://img.icons8.com/emoji/48/cactus.png";
         } else if (val <= 60) {
-            imgSrc = "https://img.icons8.com/fluency/48/partly-cloudy-day.png"; // comfortable
+            imgSrc = "https://img.icons8.com/fluency/48/partly-cloudy-day.png";
         } else if (val <= 85) {
-            imgSrc = "https://img.icons8.com/fluency/48/hygrometer.png"; // humid
+            imgSrc = "https://img.icons8.com/fluency/48/hygrometer.png";
         } else {
-            imgSrc = "https://img.icons8.com/color/48/torrential-rain.png"; // very humid
+            imgSrc = "https://img.icons8.com/color/48/torrential-rain.png";
         }
         humidityIcon.src = imgSrc;
         humidityIcon.classList.remove("d-none");
@@ -167,7 +173,9 @@
 
             if (!response.ok) throw new Error(data.error || 'API error');
 
-            const weather = data.data;
+            const full = data.data;
+            const weather = full.current_condition[0];
+            const location = full.nearest_area[0];
 
             document.getElementById('callTime').textContent = Math.round(end - start);
             document.getElementById('source').textContent = data.source;
@@ -181,7 +189,17 @@
             document.getElementById('windDir').textContent = weather.winddir16Point;
             document.getElementById('desc').textContent = weather.weatherDesc[0]?.value || '';
             document.getElementById('obsTime').textContent = weather.localObsDateTime;
-            document.getElementById('locationMeta').textContent = `${city}, ${weather.region}, ${weather.country}`;
+
+            // Update location with Google Maps link
+            const lat = location.latitude;
+            const lon = location.longitude;
+            const cityName = location.areaName[0]?.value || city;
+            const region = location.region[0]?.value || "";
+            const country = location.country[0]?.value || "";
+
+            locationLink.href = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+            document.getElementById('locationName').textContent = `${cityName}, ${region}, ${country}`;
+            locationLink.textContent = `${cityName}, ${region}, ${country}`;
 
             setTempIconFor(tempIcon, weather.temp_C);
             setTempIconFor(feelsLikeIcon, weather.FeelsLikeC);
@@ -198,10 +216,11 @@
         }
     });
 
+    // Submit on Enter key in city input
     document.getElementById('cityInput').addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
-            e.preventDefault(); // prevent form submission or page reload
-            btn.click();        // simulate button click
+            e.preventDefault();
+            btn.click();
         }
     });
 </script>

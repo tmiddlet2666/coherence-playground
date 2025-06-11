@@ -10,7 +10,7 @@ import quart
 import requests
 from quart_cors import cors
 from typing import List
-from coherence import NamedMap, Session
+from coherence import NamedMap, Session, Options
 from dataclasses import dataclass
 from coherence.serialization import proxy
 
@@ -43,22 +43,11 @@ async def init():
     weather = await session.get_map('weather')
 
 def fetch_weather(city):
-    """Fetch weather from wttr.in JSON API"""
+    """Fetch full weather data from wttr.in JSON API"""
     url = WEATHER_API_URL_TEMPLATE.format(city=city)
     response = requests.get(url)
     response.raise_for_status()
-    data = response.json()
-
-    # Extract current conditions
-    current = data.get("current_condition", [{}])[0]
-
-    # Extract location metadata
-    nearest = data.get("nearest_area", [{}])[0]
-    current["area"] = nearest.get("areaName", [{}])[0].get("value", "")
-    current["country"] = nearest.get("country", [{}])[0].get("value", "")
-    current["region"] = nearest.get("region", [{}])[0].get("value", "")
-
-    return current
+    return response.json()
 
 # ----- routes --------------------------------------------------------------
 @app.route("/")
