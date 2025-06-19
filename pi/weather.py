@@ -54,7 +54,7 @@ def fetch_weather(city):
 async def index():
     return await send_from_directory(os.path.join(app.static_folder), "index.html")
 
-@app.route("/weather")
+@app.route("/weather/")
 async def weather():
     city = request.args.get("city")
     if not city:
