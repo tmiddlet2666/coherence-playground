@@ -9,7 +9,7 @@ In this example you will:
 2. Configure Claude Desktop with your MCP Server
 3. Interact with the LLM to ask specific questions on the Coherence Cluster
 
-Please see the Medium Article here for full instructions and walkthrough.
+Please see the Medium Article [available here](https://medium.com/@middleton.music.au/integrating-coherence-with-claude-desktop-using-an-mcp-server-9f665feec989) for full instructions and walkthrough.
 
 ## Project Structure
 
@@ -120,6 +120,6 @@ You need to quit and reload Claude Desktop for the changes to be picked up.
 
 ### Interact with the LLM.
 
-Follow the Article 
+Follow the Article [available here](https://medium.com/@middleton.music.au/integrating-coherence-with-claude-desktop-using-an-mcp-server-9f665feec989) for full steps taking to query the cluster.
 
 
