@@ -55,7 +55,7 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 ### 4. Coherence MCP Server
 
-* [coherence-mcp-server](coherence-mcp-server/README.md)
+* [Run an MCP Server to access Coherence](coherence-mcp-server/README.md)
 
 ## In Progress Projects
  
