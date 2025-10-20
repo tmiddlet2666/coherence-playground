@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.6</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.tmiddlet266.demo</groupId>
+    <artifactId>coherence-mcp-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>coherence-mcp-server</name>
+    <description>Demo MCP server for Coherence using Spring Boot AI Starter</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <spring-ai.version>1.0.3</spring-ai.version>
+        <coherence.version>25.03.2</coherence.version>
+        <coherence.group.id>com.oracle.coherence.ce</coherence.group.id>
+        <coherence.cluster>demo-cluster</coherence.cluster>
+        <coherence-spring.version>4.3.1</coherence-spring.version>
+        <maven.exec.plugin.version>3.5.1</maven.exec.plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-server</artifactId>
+            <version>${spring-ai.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle.coherence.spring</groupId>
+            <artifactId>coherence-spring-boot-starter</artifactId>
+            <version>${coherence-spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${coherence.group.id}</groupId>
+            <version>${coherence.version}</version>
+            <artifactId>coherence</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${maven.exec.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <!-- default exec plugin runs a cache server -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>-Xmx512m</argument>
+                        <argument>-Xms512m</argument>
+                        <argument>-Dcoherence.log.level=5</argument>
+                        <argument>-Dcoherence.management=all</argument>
+                        <argument>-Dcoherence.ttl=0</argument>
+                        <argument>-Djava.net.preferIPv4Stack=true</argument>
+                        <argument>-Dcoherence.wka=127.0.0.1</argument>
+                        <argument>-Dcoherence.cluster=${coherence.cluster}</argument>
+                        <argument>com.tangosol.net.Coherence</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Run a console -->
+        <profile>
+            <id>console</id>
+            <activation>
+                <property>
+                    <name>console</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>-Xmx512m</argument>
+                                <argument>-Xms512m</argument>
+                                <argument>-Dcoherence.log.level=5</argument>
+                                <argument>-Dcoherence.ttl=0</argument>
+                                <argument>-Djava.net.preferIPv4Stack=true</argument>
+                                <argument>-Dcoherence.wka=127.0.0.1</argument>
+                                <argument>-Dcoherence.cluster=${coherence.cluster}</argument>
+                                <argument>-Dcoherence.distributed.localstorage=false</argument>
+                                <argument>com.tangosol.net.CacheFactory</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

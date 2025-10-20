@@ -53,6 +53,10 @@ As I add projects I will try and organise them in some useful way, but that's no
 
 * [Start Active-Active Federated Coherence Clusters](federation)
 
+### 4. Coherence MCP Server
+
+* [coherence-mcp-server](coherence-mcp-server/README.md)
+
 ## In Progress Projects
  
 * [Storing HTTP sessions in Coherence with Go](go/sessions)
